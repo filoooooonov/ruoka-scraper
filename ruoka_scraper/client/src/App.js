@@ -6,17 +6,6 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
 
-  // Backend data
-  const [backendData, setBackendData] = useState([{}])
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
 
   // Get items from the local storage or set to []
   const [items, setItems] = useState(() => {
@@ -49,18 +38,32 @@ function App() {
     })
   }
 
-
-  const sendAllItems = (e) => {
+  async function sendAllItems(e) {
     e.preventDefault()
+    console.log(items)
 
-    fetch("/api/items", {
+
+    await fetch("/api/items", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify("alalalal")
+      body: JSON.stringify({
+        "items": items
+      })
     })
+
+    // await fetch("/api").then(
+    //   response => response.json()
+    // ).then(
+    //   data => {
+    //     console.log(data)
+    //   }
+    // )
+    return;
   }
+
+  
 
   return (
     <div className="App max-w-[1024px] mx-auto px-4">
