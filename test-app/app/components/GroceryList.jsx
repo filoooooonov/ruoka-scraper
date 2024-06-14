@@ -3,7 +3,7 @@ import { FiPlusCircle } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useState } from 'react';
 
-const GroceryList = ({ items, addItem, deleteItem, setKeskoItems}) => {
+const GroceryList = ({ items, addItem, deleteItem, sendAllItems }) => {
 
   const [newItem, setNewItem] = useState("")
 
@@ -45,7 +45,7 @@ const GroceryList = ({ items, addItem, deleteItem, setKeskoItems}) => {
               Add new item
           </button>
           
-          <button type='submit' onClick={setKeskoItems} all_items={items} className='btn-primary'>
+          <button type='submit' onClick={sendAllItems} all_items={items} className='btn-primary'>
               Find cheapest options!
           </button>
       </div>
