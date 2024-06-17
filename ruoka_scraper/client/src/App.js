@@ -124,7 +124,7 @@ function App() {
 
       {/* About Section */}
       <div className="absolute bottom-[50px]">
-        <h3 className="font-bold mb-4">About Ruokascrape</h3>
+        <h3 className="font-bold mb-4">About Ruokascraper</h3>
         <hr />
         <AboutAccordion title={"What is it?"} text={
           <div>
