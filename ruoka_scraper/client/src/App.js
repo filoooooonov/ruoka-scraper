@@ -118,7 +118,7 @@ function App() {
             <SKaupat  finalProducts={finalSKaupat} />
             <Kesko finalProducts={finalKesko} />
           </div>
-        ) : <p className="font-medium text-center text-gray-700 mt-16">The result will be here...</p>}
+        ) : <p className="font-medium text-center text-gray-600 mt-16">The result will be here...</p>}
 
       </div>
 
