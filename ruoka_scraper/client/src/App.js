@@ -130,11 +130,10 @@ function App() {
         <AboutAccordion title={"What is it?"} text={
           <div>
               Ruokascraper saves you time and money on groceries. 
-              It creates separate grocery lists for store chains and shows only the cheapest option from the store chains which helps you save money on your groceries.`,
+              It creates separate grocery lists for store chains and shows only the cheapest options to help you save money on your groceries.
               <br />
               To use Ruokascraper just write the products you need to buy in the grocery list above (only in Finnish) and press "Make the list!" button. 
-              You will be presented with two lists, each for a separate chain of stores.
-              The products are selected based on price and only the cheapest options are presented.
+              You will be presented with two lists each representing a store chain with the cheapest alternatives to the items in your grocery list.
           </div>
         } />
         <hr />
