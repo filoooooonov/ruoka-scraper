@@ -3,6 +3,8 @@ import Kesko from "./components/Kesko";
 import SKaupat from "./components/SKaupat";
 import Navbar from "./components/Navbar";
 import React, { useState, useEffect } from 'react';
+import AboutAccordion from "./components/AboutAccordion";
+
 
 function App() {
 
@@ -47,8 +49,9 @@ function App() {
     })
   }
 
-
-  const [finalProducts, setFinalProducts] = useState({})
+  
+  const [finalSKaupat, setFinalSKaupat] = useState({})
+  const [finalKesko, setFinalKesko] = useState({})
   const [loading, setLoading] = useState(false)
   const [itemsSentToServer, setItemsSentToServer] = useState(0)
 
@@ -72,17 +75,17 @@ function App() {
       // Get scraped data from server
       const data = await response.json();
       console.log("Data received from server:", data)
-      setFinalProducts(data)
+      setFinalSKaupat(data.skaupat)
+      setFinalKesko(data.kesko)
       setLoading(false)
     } catch (error) {
       console.error('Error sending items to server:', error);
     }
-
   };
 
 
   return (
-    <div className="App max-w-[1024px] mx-auto px-4">
+    <div className="App max-w-[1024px] mx-auto px-4 pb-20">
       <Navbar />
       <div className="w-full grid grid-cols-2 ">
         <GroceryList items={items} addItem={addItem} deleteItem={deleteItem} sendAllItems={sendAllItems} loading={loading} />
@@ -100,14 +103,52 @@ function App() {
               ))}
             </div>
           </div>
-        ) : Object.keys(finalProducts).length > 0 ? (
+        ) : Object.keys(finalSKaupat).length > 0 && Object.keys(finalKesko).length > 0 ? (
           <div className="pl-8">
-            <Kesko />
-            <SKaupat finalProducts={finalProducts} />
+            <Kesko className="mb-8" finalProducts={finalKesko} />
+            <SKaupat finalProducts={finalSKaupat} />
           </div>
-        ) : <p className="font-medium text-center text-black">The result will be here</p>}
+        ) : Object.keys(finalSKaupat).length === 0 && Object.keys(finalKesko).length > 0 ? (
+          <div className="pl-8">
+            <Kesko finalProducts={finalKesko} />
+            <SKaupat finalProducts={finalSKaupat} />
+          </div>
+        ) : Object.keys(finalKesko).length === 0 && Object.keys(finalSKaupat).length > 0 ? (
+          <div className="pl-8">
+            <SKaupat  finalProducts={finalSKaupat} />
+            <Kesko finalProducts={finalKesko} />
+          </div>
+        ) : <p className="font-medium text-center text-gray-700 mt-16">The result will be here...</p>}
 
       </div>
+
+      {/* About Section */}
+      <div className="absolute bottom-[50px]">
+        <h3 className="font-bold mb-4">About Ruokascraper</h3>
+        <hr />
+        <AboutAccordion title={"What is it?"} text={
+          <div>
+              Ruokascraper saves you time and money on groceries. 
+              It creates separate grocery lists for store chains and shows only the cheapest option from the store chains which helps you save money on your groceries.`,
+              <br />
+              To use Ruokascraper just write the products you need to buy in the grocery list above (only in Finnish) and press "Make the list!" button. 
+              You will be presented with two lists, each for a separate chain of stores.
+              The products are selected based on price and only the cheapest options are presented.
+          </div>
+        } />
+        <hr />
+        <AboutAccordion title={"How is it built?"} text={
+          <div>
+            Ruokascraper is a React App built with Tailwind for styling and Express.js for the server-side. 
+            The product data is scraped from <a href="https://www.k-ruoka.fi/">K-Ruoka </a>
+            and <a href="https://www.s-kaupat.fi/">S-Kaupat</a> websites and then processed on the server side.
+            <br />
+            You can check out the source code <a href="https://github.com/filoooooonov/ruoka-scraper">here </a>
+            and the author's portfolio <a href="https://filoooooonov.github.io/">here</a>.
+          </div>
+        } />
+      </div>
+      
     </div>
   );
 }
