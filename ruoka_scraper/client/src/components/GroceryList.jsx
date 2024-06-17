@@ -15,7 +15,7 @@ const GroceryList = ({ items, addItem, deleteItem, sendAllItems, loading }) => {
   } 
 
   return (
-    <div className='w-full pr-8'>
+    <div className='w-full md:pr-8'>
       <p className='mb-3 text-xl font-medium text-gray-700'>Your grocery list 🍇</p>
       <div className='h-auto bg-white border-[8px] border-secondary rounded-2xl px-3 py-3 mb-4'>
           <ul>

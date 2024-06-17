@@ -4,7 +4,7 @@ import { RxOpenInNewWindow } from "react-icons/rx";
 
 const Navbar = () => {
   return (
-    <div className='py-4 mb-8 flex flex-col sm:justify-between sm:items-center sm:flex-row'>
+    <div className='py-4 md:mb-8 flex flex-col sm:justify-between sm:items-center sm:flex-row'>
         <h1 className='text-black font-bold text-5xl pr-32 pb-2'>Ruokascraper</h1>
             
         <p className='text-gray-500 inline-flex py-auto pb-4'>

@@ -7,7 +7,7 @@ import klogo from '../assets/kesko-logo.svg'
 const Kesko = ({ finalProducts }) => {
 
   return (
-    <div className='mb-8'>
+    <div>
       {Object.keys(finalProducts).length === 0 ? (
         <p className='mt-8 text-xl font-medium text-gray-700 flex items-center'>
           Nothing to buy in K-Group!

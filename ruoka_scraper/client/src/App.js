@@ -85,15 +85,16 @@ function App() {
 
 
   return (
-    <div className="App max-w-[1024px] mx-auto px-4 pb-20">
+    <div className="App max-w-[1024px] mx-auto px-4 pb-20 flex flex-col">
       <Navbar />
-      <div className="w-full grid grid-cols-2 ">
+      <div className="w-full grid md:grid-cols-2 flex-grow">
         <GroceryList items={items} addItem={addItem} deleteItem={deleteItem} sendAllItems={sendAllItems} loading={loading} />
 
 
         {loading ? (
+          // Skeleton
           <div>
-            <div role="status" className="space-y-2 bg-secondary ml-8 rounded-2xl h-auto animate-pulse p-2 ">
+            <div role="status" className="space-y-2 bg-secondary md:ml-8 mt-8 md:mt-0 rounded-2xl h-auto animate-pulse p-2 ">
               {Array.from({ length: itemsSentToServer }, (_, i) => (
                 <div key={i} className="p-2 rounded-lg flex items-center bg-card-item">
                   <div className="h-12 bg-white rounded-md mr-4 w-12"></div>
@@ -104,17 +105,17 @@ function App() {
             </div>
           </div>
         ) : Object.keys(finalSKaupat).length > 0 && Object.keys(finalKesko).length > 0 ? (
-          <div className="pl-8">
+          <div className="md:pl-8 pl-0 mt-4">
             <Kesko className="mb-8" finalProducts={finalKesko} />
             <SKaupat finalProducts={finalSKaupat} />
           </div>
         ) : Object.keys(finalSKaupat).length === 0 && Object.keys(finalKesko).length > 0 ? (
-          <div className="pl-8">
+          <div className="md:pl-8 pl-0 mt-8">
             <Kesko finalProducts={finalKesko} />
             <SKaupat finalProducts={finalSKaupat} />
           </div>
         ) : Object.keys(finalKesko).length === 0 && Object.keys(finalSKaupat).length > 0 ? (
-          <div className="pl-8">
+          <div className="md:pl-8 pl-0">
             <SKaupat  finalProducts={finalSKaupat} />
             <Kesko finalProducts={finalKesko} />
           </div>
@@ -123,8 +124,8 @@ function App() {
       </div>
 
       {/* About Section */}
-      <div className="absolute bottom-[50px]">
-        <h3 className="font-bold mb-4">About Ruokascrape</h3>
+      <footer className="mt-[260px]">
+        <h3 className="font-bold mb-4">About Ruokascraper</h3>
         <hr />
         <AboutAccordion title={"What is it?"} text={
           <div>
@@ -147,7 +148,7 @@ function App() {
             and the author's portfolio <a href="https://filoooooonov.github.io/">here</a>.
           </div>
         } />
-      </div>
+      </footer>
       
     </div>
   );
