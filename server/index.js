@@ -7,9 +7,7 @@ const app = express()
 puppeteer.use(StealthPlugin())
 app.use(cors(
     {
-        origin: "*",
-        methods: ["POST", "GET"],
-        credentials: true
+        origin: "*"
     }
 ))
 app.use(express.json());
