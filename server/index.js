@@ -10,8 +10,7 @@ app.use(cors(
         origin: "*",
         methods: ["GET", "POST"],
         allowedHeaders: ["Content-Type"],
-        credentials: true,
-        optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+        credentials: true
     }
 ))
 app.use(express.json());
