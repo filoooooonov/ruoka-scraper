@@ -137,7 +137,7 @@ function App() {
           </div>
         } />
         <hr />
-        <AboutAccordion title={"How is it built?"} text={
+        <AboutAccordion title={"How is it built"} text={
           <div>
             Ruokascraper is a React App built with Tailwind for styling and Express.js for the server-side. 
             The product data is scraped from <a href="https://www.k-ruoka.fi/">K-Ruoka </a>
