@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "main": "server.js",
-  "proxy": "http://localhost:5000",
+  "proxy": "http://ruokascraper-server.vercel.app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
