@@ -4,7 +4,6 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const cors = require('cors')
 const app = express()
 
-app.use(express.json());
 puppeteer.use(StealthPlugin())
 app.use(cors(
     {
@@ -13,6 +12,8 @@ app.use(cors(
         credentials: true
     }
 ))
+app.use(express.json());
+
 
 let products_skaupat = {};
 let products_kesko = {};
