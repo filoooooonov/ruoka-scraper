@@ -25,6 +25,35 @@ let products_skaupat = {};
 let products_kesko = {};
 
 
+// Get the items from the grocery list
+app.post("/api/items", async (req, res) => {
+    items = req.body.items
+    console.log('Data received from client:', items);
+
+    try {
+        const itemTitles = items.map(item => item.title);
+        products_skaupat = await runSKaupatScraper(itemTitles);
+        console.log('Scraped this data for products_skaupat', products_skaupat)
+        
+        products_kesko = await runKeskoScraper(itemTitles) 
+        console.log('Scraped this data for products_kesko', products_kesko)
+        
+
+        await findCheapest(products_skaupat, products_kesko, itemTitles)
+        // TODO Compare prices 
+        res.json({skaupat: products_skaupat, kesko: products_kesko});
+
+    } catch (error) {
+        console.log(`Error during scraping: ${error}`)
+    }
+})
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => { console.log('Server started on port 5000') })
+
+
+
 async function runSKaupatScraper(items) {
     const products = {} 
     const browser = await puppeteer.launch();
@@ -143,30 +172,3 @@ function findCheapest(products_skaupat, products_kesko, itemTitles) {
         delete products_skaupat[key]
     })
 }
-
-// Get the items from the grocery list
-app.post("/api/items", async (req, res) => {
-    items = req.body.items
-    console.log('Data received from client:', items);
-
-    try {
-        const itemTitles = items.map(item => item.title);
-        products_skaupat = await runSKaupatScraper(itemTitles);
-        console.log('Scraped this data for products_skaupat', products_skaupat)
-        
-        products_kesko = await runKeskoScraper(itemTitles) 
-        console.log('Scraped this data for products_kesko', products_kesko)
-        
-
-        await findCheapest(products_skaupat, products_kesko, itemTitles)
-        // TODO Compare prices 
-        res.json({skaupat: products_skaupat, kesko: products_kesko});
-
-    } catch (error) {
-        console.log(`Error during scraping: ${error}`)
-    }
-})
-
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => { console.log('Server started on port 5000') })
