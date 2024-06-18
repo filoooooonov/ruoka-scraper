@@ -139,7 +139,7 @@ function findCheapest(products_skaupat, products_kesko, itemTitles) {
 }
 
 // Get the items from the grocery list
-app.post("ruokascraper-server.vercel.app/api/items", async (req, res) => {
+app.post("/api/items", async (req, res) => {
     items = req.body.items
     console.log('Data received from client:', items);
 
