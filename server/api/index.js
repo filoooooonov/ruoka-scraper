@@ -38,6 +38,7 @@ app.post("/", async (req, res) => {
 
         await findCheapest(products_skaupat, products_kesko, itemTitles)
         // TODO Compare prices 
+        res.setHeader('Access-Control-Allow-Origin', '*')
         res.json({skaupat: products_skaupat, kesko: products_kesko});
 
     } catch (error) {
