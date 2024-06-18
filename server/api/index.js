@@ -25,7 +25,7 @@ let products_kesko = {};
 // Get the items from the grocery list
 app.post("/api/items", async (req, res) => {
     items = req.body.items
-    console.log('Data received from client:', items);
+    console.log('Data received from client', items);
 
     try {
         const itemTitles = items.map(item => item.title);
