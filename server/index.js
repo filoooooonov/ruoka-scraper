@@ -5,13 +5,13 @@ const cors = require('cors')
 const app = express()
 
 puppeteer.use(StealthPlugin())
-// app.use(cors(
-//     {
-//         origin: ["https://ruokascraper.vercel.app/"],
-//         methods: ["POST", "GET"],
-//         credentials: true
-//     }
-// ))
+app.use(cors(
+    {
+        origin: ["https://ruokascraper.vercel.app/"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+))
 app.use(express.json());
 
 
