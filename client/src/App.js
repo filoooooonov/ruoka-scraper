@@ -74,6 +74,10 @@ function App() {
       console.log("Sent data to the server");
 
 
+      if (!response.ok) {
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+
       // Get scraped data from server
       const data = await response.json();
       console.log("Data received from server:", data)
