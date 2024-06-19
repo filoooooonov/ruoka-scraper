@@ -79,7 +79,7 @@ function App() {
       setFinalKesko(data.kesko)
       setLoading(false)
     } catch (error) {
-      console.error('Error sending items to server:', error);
+      return JSON.parse('Error sending items to server:', error);
     }
   };
 
