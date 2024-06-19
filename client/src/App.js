@@ -59,11 +59,11 @@ function App() {
     e.preventDefault();
     setLoading(true);
     
-    console.log("Sending data to the server:", itemsToSend);
     setItemsSentToServer(itemsToSend.length)
 
     try {
       // Send items to server
+      console.log("Sending data to the server:", itemsToSend);
       const response = await fetch("https://ruokascraper-server.vercel.app/api", { 
         method: "POST",
         headers: {
@@ -71,6 +71,8 @@ function App() {
         },
         body: JSON.stringify({ "items": itemsToSend })
       });
+      console.log("Sent data to the server");
+
 
       // Get scraped data from server
       const data = await response.json();
@@ -79,7 +81,7 @@ function App() {
       setFinalKesko(data.kesko)
       setLoading(false)
     } catch (error) {
-      return JSON.parse('Error sending items to server:', error);
+      console.log('Error sending items to server:', error);
     }
   };
 
