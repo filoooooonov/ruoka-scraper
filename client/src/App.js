@@ -64,7 +64,7 @@ function App() {
 
     try {
       // Send items to server
-      const response = await fetch("https://ruokascraper-server.vercel.app", {
+      const response = await fetch("https://ruokascraper-server.vercel.app/api", { 
         method: "POST",
         headers: {
           "Content-type": "application/json",
