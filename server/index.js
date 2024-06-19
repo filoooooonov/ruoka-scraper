@@ -5,15 +5,15 @@ const cors = require('cors')
 const app = express()
 
 puppeteer.use(StealthPlugin())
-const corsOptions = {
-    origin: "*", // Your client domain
-    methods: ["GET", "POST"]
-};
+// const corsOptions = {
+//     origin: "*", // Your client domain
+//     methods: ["GET", "POST"]
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
-// Handle preflight requests
-app.options('*', cors(corsOptions));
+// // Handle preflight requests
+// app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
@@ -23,7 +23,7 @@ let products_kesko = {};
 
 
 // Get the items from the grocery list
-app.post("/", async (req, res) => {
+app.post("/api", async (req, res) => {
     items = req.body.items
     console.log('Data received from client', items);
 
