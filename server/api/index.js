@@ -29,9 +29,10 @@ app.post("/api", async (req, res) => {
 
     // try {
         const itemTitles = items.map(item => item.title);
-        res.json({ message: 'Data received from client, itemTitles', items: itemTitles });
 
-    //     products_skaupat = await runSKaupatScraper(itemTitles);
+        products_skaupat = await runSKaupatScraper(itemTitles);
+        res.json({ message: 'Data received from client, skaupat', items: products_skaupat});
+
     //     console.log('Scraped this data for products_skaupat', products_skaupat)
         
     //     products_kesko = await runKeskoScraper(itemTitles) 
