@@ -24,26 +24,29 @@ let products_kesko = {};
 
 // Get the items from the grocery list
 app.post("/api", async (req, res) => {
-    items = req.body.items
-    console.log('Data received from client', items);
+    console.log('SERVER RECEIVED ANSWER')
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.json({message: "Server Success"});
+    // items = req.body.items
+    // console.log('Data received from client', items);
 
-    try {
-        const itemTitles = items.map(item => item.title);
-        products_skaupat = await runSKaupatScraper(itemTitles);
-        console.log('Scraped this data for products_skaupat', products_skaupat)
+    // try {
+    //     const itemTitles = items.map(item => item.title);
+    //     products_skaupat = await runSKaupatScraper(itemTitles);
+    //     console.log('Scraped this data for products_skaupat', products_skaupat)
         
-        products_kesko = await runKeskoScraper(itemTitles) 
-        console.log('Scraped this data for products_kesko', products_kesko)
+    //     products_kesko = await runKeskoScraper(itemTitles) 
+    //     console.log('Scraped this data for products_kesko', products_kesko)
         
 
-        await findCheapest(products_skaupat, products_kesko, itemTitles)
-        // TODO Compare prices 
-        res.setHeader('Access-Control-Allow-Origin', '*')
-        res.json({skaupat: products_skaupat, kesko: products_kesko});
+    //     await findCheapest(products_skaupat, products_kesko, itemTitles)
+    //     // TODO Compare prices 
+    //     res.setHeader('Access-Control-Allow-Origin', '*')
+    //     res.json({skaupat: products_skaupat, kesko: products_kesko});
 
-    } catch (error) {
-        console.log(`Error during scraping: ${error}`)
-    }
+    // } catch (error) {
+    //     console.log(`Error during scraping: ${error}`)
+    // }
 })
 
 
