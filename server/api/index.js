@@ -25,7 +25,6 @@ let products_kesko = {};
 // Get the items from the grocery list
 app.post("/api", async (req, res) => {
     console.log('SERVER RECEIVED ANSWER')
-    res.setHeader('Access-Control-Allow-Origin', '*')
     res.json({message: "Server Success"});
     // items = req.body.items
     // console.log('Data received from client', items);
