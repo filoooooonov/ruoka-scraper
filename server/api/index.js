@@ -60,40 +60,42 @@ async function runSKaupatScraper(items) {
         const products = {} 
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
+        res.json({ message: 'Data received from client, skaupat function', items: items});
+
     
-        for (let i = 0; i < items.length; i++) {
-            const url = `https://www.s-kaupat.fi/hakutulokset?queryString=${items[i]}&sort=price%3Aasc`
-            await page.goto(url, { waitUntil: 'networkidle0' })
+    //     for (let i = 0; i < items.length; i++) {
+    //         const url = `https://www.s-kaupat.fi/hakutulokset?queryString=${items[i]}&sort=price%3Aasc`
+    //         await page.goto(url, { waitUntil: 'networkidle0' })
     
-            await page.waitForSelector('.sc-67cf5218-0')
-            // Get the price of the product
-            let price_kpl = await page.evaluate(() => {
-                const element = document.querySelector('[data-test-id="product-price__unitPrice"]');
-                return element ? element.innerText : 'Error: element not found';
-            })
-            price_kpl = price_kpl.replace(' €', '/kpl').replace(',', '.')
+    //         await page.waitForSelector('.sc-67cf5218-0')
+    //         // Get the price of the product
+    //         let price_kpl = await page.evaluate(() => {
+    //             const element = document.querySelector('[data-test-id="product-price__unitPrice"]');
+    //             return element ? element.innerText : 'Error: element not found';
+    //         })
+    //         price_kpl = price_kpl.replace(' €', '/kpl').replace(',', '.')
     
-            let price_kilo = await page.evaluate(() => {
-                const element = document.querySelector('[data-test-id="product-card__productPrice__comparisonPrice"]');
-                return element ? element.innerText : 'Error: element not found';
-            })
-            price_kilo = price_kilo.replace(' €', '').replace(',', '.')
+    //         let price_kilo = await page.evaluate(() => {
+    //             const element = document.querySelector('[data-test-id="product-card__productPrice__comparisonPrice"]');
+    //             return element ? element.innerText : 'Error: element not found';
+    //         })
+    //         price_kilo = price_kilo.replace(' €', '').replace(',', '.')
     
-            // Get the name of the product
-            let name = await page.evaluate(() => {
-                const element = document.querySelector('.sc-e834173a-0.Ywezr.sc-e834173a-0.Ywezr.sc-462d0cbc-1.hvnOuI');
-                return element ? element.innerText : 'Error: element not found';
-            })
+    //         // Get the name of the product
+    //         let name = await page.evaluate(() => {
+    //             const element = document.querySelector('.sc-e834173a-0.Ywezr.sc-e834173a-0.Ywezr.sc-462d0cbc-1.hvnOuI');
+    //             return element ? element.innerText : 'Error: element not found';
+    //         })
     
-            let imageUrl = await page.evaluate(() => {
-                const element = document.querySelector('.sc-96a3776a-1.jgqcqd.sc-96a3776a-0.eamPkd');
-                return element ? element.src : 'Error: element not found';
-            })
+    //         let imageUrl = await page.evaluate(() => {
+    //             const element = document.querySelector('.sc-96a3776a-1.jgqcqd.sc-96a3776a-0.eamPkd');
+    //             return element ? element.src : 'Error: element not found';
+    //         })
     
-            products[name] = [price_kpl, price_kilo, imageUrl]
-        }
-        await browser.close();
-        return products;
+    //         products[name] = [price_kpl, price_kilo, imageUrl]
+    //     }
+    //     await browser.close();
+    //     return products;
     } catch (error) {
         res.json({"error": error});
     }
