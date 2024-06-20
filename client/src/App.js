@@ -69,11 +69,11 @@ function App() {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ "items": itemsToSend })
+        body: JSON.stringify({ items: itemsToSend })
       });
       console.log("Sent data to the server");
 
-      
+
       if (!response.ok) {
         throw new Error(`Server responded with status: ${response.status}`);
       }
